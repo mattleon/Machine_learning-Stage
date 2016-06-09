@@ -17,7 +17,6 @@ fich = open('cwnd_reno.dat','r')
 val = fich.read()
 tmp = val.split('\r\n')
 new_liste = list()
-
 train_x = list()
 train_y = list()
 i = 1
@@ -36,6 +35,25 @@ train_Y = numpy.asarray(train_y)
 
 n_samples = train_X.shape[0]
 
+# Test data
+fich = open('cwnd_reno.dat','r')
+val = fich.read()
+tmp = val.split('\r\n')
+liste_vide = list()
+test_x = list()
+test_y = list()
+i = 1
+while i < len(tmp)-1:
+    tmp1 = tmp[i].split(';')
+    test_x.append(tmp1[axe_X])
+    test_y.append(tmp1[axe_Y])
+    #mon_tuple = [float(tmp1[0]), float(tmp1[1])]
+    #time & cwnd
+    #liste_vide.append(mon_tuple)
+    i += 10    fich.close()
+
+test_X = numpy.asarray(test_x)
+test_Y = numpy.asarray(test_y)
 # tf Graph Input
 X = tf.placeholder("float")
 Y = tf.placeholder("float")
@@ -81,28 +99,6 @@ with tf.Session() as sess:
     plt.show()
 
     # Testing example, as requested (Issue #2)
-    fich = open('cwnd_reno.dat','r')
-    val = fich.read()
-    tmp = val.split('\r\n')
-    liste_vide = list()
-
-    test_x = list()
-    test_y = list()
-    i = 1
-    while i < len(tmp)-1:
-        tmp1 = tmp[i].split(';')
-        test_x.append(tmp1[axe_X])
-        test_y.append(tmp1[axe_Y])
-        #mon_tuple = [float(tmp1[0]), float(tmp1[1])]
-        #time & cwnd
-        #liste_vide.append(mon_tuple)
-        i += 10
-
-    fich.close()
-    test_X = numpy.asarray(test_x)
-    test_Y = numpy.asarray(test_y)
-    #test_X = numpy.asarray([6.83, 4.668, 8.9, 7.91, 5.7, 8.7, 3.1, 2.1])
-    #test_Y = numpy.asarray([1.84, 2.273, 3.2, 2.831, 2.92, 3.24, 1.35, 1.03])
 
     print "Testing... (Mean square loss Comparison)"
     testing_cost = sess.run(

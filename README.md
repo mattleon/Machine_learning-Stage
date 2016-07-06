@@ -9,17 +9,17 @@ Vous trouverez ici les explications sur comment utiliser les différents scripts
 
 Pour pouvoir utiliser les différents scripts et algorithmes, voici ce qu'il faut sur votre machine :
 
-> - Python
-> - Divers modules python :
-		matplotlib : 
-		` $ sudo apt-get install python-matplotlib`
-		pandas : 
-		`$ sudo apt-get install python-pandas`
-		sklearn :
-		 `$ sudo apt-get install python-sklearn`
-		numpy : 
-		`$ sudo apt-get install python-numpy`
-> - Des fichiers d'entraînement et de test.
+* Python2.7 ou Python3
+* Divers modules python :
+	* matplotlib : 
+	` $ sudo apt-get install python-matplotlib`
+	* pandas : 
+	`$ sudo apt-get install python-pandas`
+	* sklearn :
+	 `$ sudo apt-get install python-sklearn`
+	* numpy : 
+	`$ sudo apt-get install python-numpy`
+* Des fichiers d'entraînement et de test.
 
 
 #### Lancer un script
@@ -39,7 +39,7 @@ Voici une liste des différents algorithmes : (Cette liste sera mise à jour au 
 > - Soft-voting
 
 #####  Arbre de décision
-  L'Arbre de Décision est une technique d'apprentissage supervisé[^stackedit]. Le but de cet algorithme est de créer un modèle prédictif, c'est-à-dire qui va prédire la classe (ou label) d'une variable, ici à deux dimensions. Pour créer ce modèle, l'arbre de construit au fur et à mesure de différentes décisions qu'il jugera bonne ou mauvaise en fonction des valeurs de tests qu'il a. On parle ici d'arbre, car l'algorithme prenant différentes décisions de classification au fur et à mesure de son apprentissage, il va créer des 'branches' qu'il décidera de garder ou non.
+  L'Arbre de Décision est une technique d'apprentissage supervisé. Le but de cet algorithme est de créer un modèle prédictif, c'est-à-dire qui va prédire la classe (ou label) d'une variable, ici à deux dimensions. Pour créer ce modèle, l'arbre de construit au fur et à mesure de différentes décisions qu'il jugera bonne ou mauvaise en fonction des valeurs de tests qu'il a. On parle ici d'arbre, car l'algorithme prenant différentes décisions de classification au fur et à mesure de son apprentissage, il va créer des 'branches' qu'il décidera de garder ou non.
   On obtient alors à la fin un arbre prédictif qui, à partir de variables d'entrée, pourra donner sa classe. L'arbre ayant prit différentes décisions et ayant gardées une ou plusieurs branches, il se peut que les résultats fluctuent un peu, mais rien qui ne rende l'algorithme inintéressant d'un point de vue réussite.
 
 ##### K-plus proches voisins
@@ -53,18 +53,29 @@ Le fonctionnement de cet algorithme est donc plutôt simple à comprendre :
 ##### Soft-Voting
 
 Soft-voting est une méthode de prédiction se basant sur d'autres algorithmes de prédiction. Pour prédire la classe d'un point, le Soft-Voting considère les prédictions faites par d'autres algorithmes (que nous avons nous-même lancé) et va faire la moyenne des probabilités pour chaque classe.
+
 Par exemple :
+
 Supposons que j'utilise 3 algorithmes différents pour trouver la classe d'un point, avec 2 classes différentes possibles.
 Soit les probabilités suivantes : respectivement 0.2, 0.5 et 0.3 pour la classe 1 d'après les 3 algorithmes et 0.8, 0.5 et 0.7 pour la classe 2 d'après les mêmes algorithmes, alors le Soft-Voting fera : 
+
 P(1) = (0.2+0.5+0.3)/3 = 0.33
+
 P(2) = (0.8 + 0.5 + 0.7)/3 = 0.66
+
 Le point choisi sera donc de la classe 2 d'après le Soft-Voting.
 De plus, si l'on fait plus confiance à un algorithme qu'à un autre, on peut modifier leur 'poids' pour leur donner plus d'importance.
+
 Par exemple :
+
 Reprenons les 3 algorithmes précédents et leurs valeurs. Cette fois, je donne plus d'importante au deuxième algorithme qu'aux deux autres, imaginons que nous lui donnions un poids de 3. On aura alors :
+
 P(1) = (0.2 + 0.5*3 + 0.3)/(somme_des_poids) = 0.4
+
 P(2) = (0.8 + 0.5*3 + 0.7)/(somme_des_poids) = 0.6
+
 Les probabilités ont été légèrement modifiées dans cet exemple.
+
 Cette modification de l'importance des algorithmes permet de pouvoir donner plus d'importance à un algorithme que l'on pensera donner de meilleurs résultats sans pour autant devoir supprimer un autre que l'on pensera moins intéressant.
 
 ----------

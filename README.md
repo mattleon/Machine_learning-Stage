@@ -4,17 +4,6 @@ Bonjour !
 
 Vous trouverez ici les explications sur comment utiliser les différents scripts fournis et quelques rapides explications sur leur fonctionnement.
 
-----------
-
-
-#### <i class="icon-file"> Table des matières
-
-You can insert a table of contents using the marker `[TOC]`:
-
-[TOC]
-
-
-----------
 
 #### <i class="icon-file"></i> Prérequis
 

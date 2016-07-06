@@ -5,7 +5,7 @@ Bonjour !
 Vous trouverez ici les explications sur comment utiliser les différents scripts fournis et quelques rapides explications sur leur fonctionnement.
 
 
-#### <i class="icon-file"></i> Prérequis
+#### Prérequis
 
 Pour pouvoir utiliser les différents scripts et algorithmes, voici ce qu'il faut sur votre machine :
 
@@ -22,14 +22,14 @@ Pour pouvoir utiliser les différents scripts et algorithmes, voici ce qu'il fau
 > - Des fichiers d'entraînement et de test.
 
 
-#### <i class="icon-file"></i> Lancer un script
+#### Lancer un script
 
 Pour lancer un des script, il suffit de lancer la commande suivante dans un terminal :
 > $ python 'nom_du_script'
 
 Pour le moment, le nom des fichiers d'entraînement et/ou de tests ne sont pas à donner en arguments, ils sont déjà présents dans le code, cela pourra être modifié sous peu.
 
-#### <i class="icon-folder-open"></i> Comprendre les différentes algorithmes
+#### Comprendre les différentes algorithmes
 
 Vous avez ici la possibilité d'utiliser différents scripts et, par conséquent, différents algorithmes.
 Voici une liste des différents algorithmes : (Cette liste sera mise à jour au fur et à mesure des ajouts et/ou suppressions)

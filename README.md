@@ -11,13 +11,13 @@ Pour pouvoir utiliser les différents scripts et algorithmes, voici ce qu'il fau
 
 > - Python
 > - Divers modules python :
-		>  - matplotlib : 
+		matplotlib : 
 		` $ sudo apt-get install python-matplotlib`
-		>  - pandas : 
+		pandas : 
 		`$ sudo apt-get install python-pandas`
-		>  - sklearn :
+		sklearn :
 		 `$ sudo apt-get install python-sklearn`
-		>  - numpy : 
+		numpy : 
 		`$ sudo apt-get install python-numpy`
 > - Des fichiers d'entraînement et de test.
 

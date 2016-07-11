@@ -37,6 +37,7 @@ Voici une liste des différents algorithmes : (Cette liste sera mise à jour au 
 > - Arbre de décision
 > - K-plus proches voisins
 > - Soft-voting
+> - GMM classification (à compléter)
 
 #####  Arbre de décision
   L'Arbre de Décision est une technique d'apprentissage supervisé. Le but de cet algorithme est de créer un modèle prédictif, c'est-à-dire qui va prédire la classe (ou label) d'une variable, ici à deux dimensions. Pour créer ce modèle, l'arbre de construit au fur et à mesure de différentes décisions qu'il jugera bonne ou mauvaise en fonction des valeurs de tests qu'il a. On parle ici d'arbre, car l'algorithme prenant différentes décisions de classification au fur et à mesure de son apprentissage, il va créer des 'branches' qu'il décidera de garder ou non.

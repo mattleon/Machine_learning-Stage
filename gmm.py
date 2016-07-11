@@ -10,7 +10,7 @@ from sklearn.mixture import GMM
 """
 GMM classifiers
 """
-
+target_names = ['0', '1', '2']
 def make_ellipses(gmm, ax):
     for n, color in enumerate('rgb'):
         v, w = np.linalg.eigh(gmm._get_covars()[n][:2, :2])
@@ -23,15 +23,7 @@ def make_ellipses(gmm, ax):
         ell.set_clip_box(ax.bbox)
         ell.set_alpha(0.5)
         ax.add_artist(ell)
-"""
-iris = datasets.load_iris()
 
-# Break up the dataset into non-overlapping training (75%) and testing
-# (25%) sets.
-skf = StratifiedKFold(iris.target, n_folds=4)
-# Only take the first fold.
-train_index, test_index = next(iter(skf))
-"""
 # On charge les donnees d'entrainement et de test
 df = pd.read_csv('cwnd.dat', delimiter = ';')
 x_train = []
@@ -53,7 +45,7 @@ X_train = np.array(x_train)
 X_test = np.array(x_test)
 
 n_classes = len(np.unique(y_train))
-print(n_classes)
+
 # Try GMMs using different types of covariances.
 classifiers = dict((covar_type, GMM(n_components=n_classes,
                     covariance_type=covar_type, init_params='wc', n_iter=20))
@@ -77,27 +69,23 @@ for index, (name, classifier) in enumerate(classifiers.items()):
 
     h = plt.subplot(2, n_classifiers / 2, index + 1)
     make_ellipses(classifier, h)
-    """
-    for n, color in enumerate('rgb'):
-        data = iris.data[iris.target == n]
-        plt.scatter(data[:, 0], data[:, 1], 0.8, color=color,
-                    label=iris.target_names[n])
-    """
+
     # Plot the test data with crosses
     for n, color in enumerate('rgb'):
         data = X_test[y_test == n]
         plt.plot(data[:, 0], data[:, 1], 'x', color=color)
 
     y_train_pred = classifier.predict(X_train)
-    print(y_train_pred)
-    train_accuracy = np.mean(y_train_pred.ravel() == y_train.ravel()) * 100
-    plt.text(0.05, 0.9, 'Train accuracy: %.1f' % train_accuracy,
-             transform=h.transAxes)
+    #train_accuracy = np.mean(y_train_pred.ravel() == y_train.ravel()) * 100
+    #plt.text(0.05, 0.9, 'Train accuracy: %.1f' % train_accuracy,
+    #         transform=h.transAxes)
 
     y_test_pred = classifier.predict(X_test)
-    test_accuracy = np.mean(y_test_pred.ravel() == y_test.ravel()) * 100
-    plt.text(0.05, 0.8, 'Test accuracy: %.1f' % test_accuracy,
-             transform=h.transAxes)
+    print((y_train_pred))
+    print(len(X_test))
+    #test_accuracy = np.mean(y_test_pred.ravel() == y_test.ravel()) * 100
+    #plt.text(0.05, 0.8, 'Test accuracy: %.1f' % test_accuracy,
+    #         transform=h.transAxes)
 
     plt.xticks(())
     plt.yticks(())

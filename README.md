@@ -79,4 +79,18 @@ Les probabilités ont été légèrement modifiées dans cet exemple.
 
 Cette modification de l'importance des algorithmes permet de pouvoir donner plus d'importance à un algorithme que l'on pensera donner de meilleurs résultats sans pour autant devoir supprimer un autre que l'on pensera moins intéressant.
 
+
+#### Enregistrer/charger le résultat d'un entraînement
+
+	- Enregistrement : 
+	L'enregistrement d'un entraînement se fait grâce au module joblib de sklearn. Il s'utilise simplement en lancant la commande suivante dans le script : 
+	'joblib.dump(clf, 'model.pkl')'
+	Avec clf l'objet correspondant au résultat de la commande fit (l'entraînement) et model.pkl le nom du fichier qui sera enregistré.
+
+	- Chargement :
+	Le chargement est tout aussi simple. Il suffit de lancer la commande suivante : 
+	'clf = joblib.load('model.pkl')'
+	avec model.pkl le nom du fichier à charger, et clf qui sera l'entraînement chargé.
+	L'objet obtenu peut ensuite être utilisé comme le résultat d'un entraînement normal.
 ----------
+

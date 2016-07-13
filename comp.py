@@ -6,8 +6,8 @@ a l'aide d'un arbre de decision, les k-plus proches voisins et SVC.
 
 Le resultat est un graphique montrant le resultat des quatres algorithmes
 utilises.
-Il est toutefois facile de 'capturer' les valeurs des predictions pour chaque algorithme,
-via la variable Z pour chaque itteration.
+Il est toutefois facile de 'capturer' les valeurs des predictions pour chaque
+algorithme, via la variable Z pour chaque itteration.
 """
 
 from itertools import product
@@ -20,6 +20,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
 from sklearn.ensemble import VotingClassifier
 
+#variable qui determine l'ecart entre les valeurs predites
 plot_step = 0.1
 
 # On charge les donnees
@@ -33,7 +34,7 @@ for i in range(0,len(df)/3):
 y = np.array(y)
 X = np.array(x)
 
-# Training classifiers
+# Les classifieurs utilises
 clf1 = DecisionTreeClassifier(max_depth=4)
 clf2 = KNeighborsClassifier(n_neighbors=7)
 clf3 = SVC(kernel='rbf', probability=True)
@@ -71,4 +72,5 @@ for idx, clf, tt in zip(product([0, 1], [0, 1]),
     axarr[idx[0], idx[1]].contourf(xx, yy, Z, alpha=0.4)
     axarr[idx[0], idx[1]].scatter(X[:, 0], X[:, 1], c=y, alpha=0.8)
     axarr[idx[0], idx[1]].set_title(tt)
+    
 plt.show()

@@ -1,3 +1,12 @@
+"""
+Auteur : Matthieu Leon
+
+Script permettant d'afficher le resultat  d'une classification
+GMM sur les donnees.
+
+"""
+
+
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 import numpy as np
@@ -7,10 +16,8 @@ from sklearn.cross_validation import StratifiedKFold
 from sklearn.externals.six.moves import xrange
 from sklearn.mixture import GMM
 
-"""
-GMM classifiers
-"""
 target_names = ['0', '1', '2']
+
 def make_ellipses(gmm, ax):
     for n, color in enumerate('rgb'):
         v, w = np.linalg.eigh(gmm._get_covars()[n][:2, :2])
@@ -46,7 +53,7 @@ X_test = np.array(x_test)
 
 n_classes = len(np.unique(y_train))
 
-# Try GMMs using different types of covariances.
+# 4 types de classification GMM avec differentes covariances
 classifiers = dict((covar_type, GMM(n_components=n_classes,
                     covariance_type=covar_type, init_params='wc', n_iter=20))
                    for covar_type in ['spherical', 'diag', 'tied', 'full'])
@@ -59,33 +66,34 @@ plt.subplots_adjust(bottom=.01, top=0.95, hspace=.15, wspace=.05,
 
 
 for index, (name, classifier) in enumerate(classifiers.items()):
-    # Since we have class labels for the training data, we can
-    # initialize the GMM parameters in a supervised manner.
+
     classifier.means_ = np.array([X_train[y_train == i].mean(axis=0)
                                   for i in xrange(n_classes)])
 
-    # Train the other parameters using the EM algorithm.
+    # Entrainement non supervise
     classifier.fit(X_train)
 
     h = plt.subplot(2, n_classifiers / 2, index + 1)
     make_ellipses(classifier, h)
 
-    # Plot the test data with crosses
+    # Donnees de tests avec des croix
     for n, color in enumerate('rgb'):
         data = X_test[y_test == n]
         plt.plot(data[:, 0], data[:, 1], 'x', color=color)
 
+    #Prediction des classes d'entrainement
     y_train_pred = classifier.predict(X_train)
-    #train_accuracy = np.mean(y_train_pred.ravel() == y_train.ravel()) * 100
-    #plt.text(0.05, 0.9, 'Train accuracy: %.1f' % train_accuracy,
-    #         transform=h.transAxes)
+    train_accuracy = np.mean(y_train_pred.ravel() == y_train.ravel()) * 100
+    plt.text(0.05, 0.9, 'Train accuracy: %.1f' % train_accuracy,
+             transform=h.transAxes)
 
+    #Prediction des classes de tests (ce qu'on cherche)
     y_test_pred = classifier.predict(X_test)
-    print((y_train_pred))
-    print(len(X_test))
-    #test_accuracy = np.mean(y_test_pred.ravel() == y_test.ravel()) * 100
-    #plt.text(0.05, 0.8, 'Test accuracy: %.1f' % test_accuracy,
-    #         transform=h.transAxes)
+
+    # Calcul de la precision : faisable dans ce cas
+    test_accuracy = np.mean(y_test_pred.ravel() == y_test.ravel()) * 100
+    plt.text(0.05, 0.8, 'Test accuracy: %.1f' % test_accuracy,
+             transform=h.transAxes)
 
     plt.xticks(())
     plt.yticks(())

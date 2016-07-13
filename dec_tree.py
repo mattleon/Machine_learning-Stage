@@ -2,7 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn.tree import DecisionTreeClassifier
-import pickle
 from sklearn.externals import joblib
 
 # Parametres
@@ -52,8 +51,6 @@ Z = Z.reshape(xx.shape)
 Z est un tableau de tableau tq : Z[y][X] = label, avec un ecart
 de plot_step
 """
-
-#print(Z[51][1])
 
 #contour -> met les labels predits (avec les couleurs) sur le graphe
 cs = plt.contourf(xx, yy, Z)

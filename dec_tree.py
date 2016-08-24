@@ -7,7 +7,7 @@ from sklearn.externals import joblib
 # Parametres
 n_classes = 3
 plot_colors = "byr"
-plot_step = 1
+plot_step = 0.1
 label_names = ['0', '1', '2']
 
 # On charge les donnees d'entrainement
